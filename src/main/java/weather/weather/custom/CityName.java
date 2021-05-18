@@ -1,8 +1,10 @@
 package weather.weather.custom;
 
+import lombok.Getter;
+import lombok.Setter;
 
 //@Getter
-//@Setter
+@Setter
 //@NoArgsConstructor
 //@AllArgsConstructor
 //@ToString
@@ -19,3 +21,4 @@ public class CityName {
 
     private Integer distance;
 }
+
