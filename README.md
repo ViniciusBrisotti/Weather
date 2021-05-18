@@ -10,7 +10,7 @@
 
 :scroll: The main goal is perform a simulation of REST concepts in practice using, as an example, an external API that returns info about the weather in the specified city.
 
-## Tecnologies:
+## Technologies:
 :computer: To build this project the following technologies were necessary:
 - Java as programming language;
 - Spring Boot as framework;
