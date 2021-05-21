@@ -1,14 +1,13 @@
 package weather.weather.custom;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-//@Getter
+@Getter
 @Setter
-//@NoArgsConstructor
-//@AllArgsConstructor
-//@ToString
-//@EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@EqualsAndHashCode
 public class CityName {
 
     private String title;
@@ -16,9 +15,8 @@ public class CityName {
     private String location_type;
 
     private Integer woeid;
-
-    private float latt_lon;
-
-    private Integer distance;
 }
+
+
+
 

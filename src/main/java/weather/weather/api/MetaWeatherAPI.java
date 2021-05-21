@@ -1,20 +1,24 @@
 package weather.weather.api;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import weather.weather.custom.CityName;
-import weather.weather.custom.Woeid;
+import weather.weather.custom.CityNameResponse;
+
 
 import java.util.List;
 
+@RestController
 @FeignClient(name = "metaWeatherAPI", url = "https://www.metaweather.com/api/location")
 public interface MetaWeatherAPI {
 
-    @RequestMapping("/search/?query={city_name}")
-    List<CityName> cityName(@PathVariable("city_name") String cityName);
+    @RequestMapping("/search/?query={cityName}")
+    List<CityName> cityName(@PathVariable("cityName") String cityName);
 
     @RequestMapping("/{woeid}")
-    List<Woeid> citywoeid(@PathVariable("woeid") Integer woeid);
+    List<CityNameResponse> citywoeid(@PathVariable("woeid") Integer woeid);
 
 }
