@@ -1,14 +1,11 @@
 package weather.weather.api;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import weather.weather.custom.CityName;
 import weather.weather.custom.CityNameResponse;
-
-
 import java.util.List;
 
 @RestController
