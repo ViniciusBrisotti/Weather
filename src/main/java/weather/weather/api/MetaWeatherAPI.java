@@ -16,6 +16,6 @@ public interface MetaWeatherAPI {
     List<CityName> cityName(@PathVariable("cityName") String cityName);
 
     @RequestMapping("/{woeid}")
-    List<CityNameResponse> citywoeid(@PathVariable("woeid") Integer woeid);
+    CityNameResponse citywoeid(@PathVariable("woeid") Integer woeid);
 
 }

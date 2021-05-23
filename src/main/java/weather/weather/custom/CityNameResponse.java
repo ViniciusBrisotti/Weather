@@ -1,9 +1,8 @@
 package weather.weather.custom;
 
 import lombok.*;
-
-import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,17 +16,23 @@ public class CityNameResponse {
 
     private String location_type;
 
-    private float latt_long;
+    private String latt_long;
 
-    private LocalDateTime sun_rise;
-
-    private LocalDateTime sunt_set;
+//    private LocalDateTime sun_rise;
+//
+//    private LocalDateTime sunt_set;
 
     private String timezone_name;
 
-    public class consolidated_weather {
+    private List<ConsolidateWeather> consolidated_weather;
 
-        private Integer id;
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class ConsolidateWeather {
+
+        private Long id;
 
         private Date applicable_date;
 

@@ -1,6 +1,5 @@
 package weather.weather.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,8 +9,7 @@ import weather.weather.api.MetaWeatherAPI;
 import weather.weather.custom.CityName;
 import weather.weather.custom.CityNameResponse;
 import java.io.IOException;
-import java.net.URL;
-import java.util.List;
+import java.util.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -21,24 +19,30 @@ public class ApiController {
 
 @GetMapping("/{city}")
 @ResponseBody
-public List<CityName> test(@PathVariable("city") String cityName) throws IOException {
+public Map<String, Integer> test(@PathVariable("city") String cityName) throws IOException {
+
     List<CityName> cityNames = metaWeatherAPI.cityName(cityName);
 
-//TODO (X) Get the WOEID and assign it to a variable
+    Integer cityWoed = cityNames.get(0).getWoeid();
 
-      Integer cityWoed = cityNames.get(0).getWoeid();
-      System.out.println(cityWoed);
+    CityNameResponse response = metaWeatherAPI.citywoeid(cityWoed);
 
-//TODO ( ) invoke citywoeid method using the WOEID variable as a parameter
+    CityNameResponse.ConsolidateWeather weather = response.getConsolidated_weather().get(0);
 
-//TODO ( ) Map the method citywoeid() response as an object
+    Integer maxTempCelsius = weather.getMax_temp();
+    Integer minTempCelsius = weather.getMin_temp();
+    Integer maxTempF = (int)(maxTempCelsius * 1.8 + 32);
+    Integer minTempF = (int)(minTempCelsius * 1.8 + 32);
 
-    //JSON URL to Java object
+    Map<String, Integer> temperatures = new HashMap<>();
+    temperatures.put("max_temp_celsius", maxTempCelsius);
+    temperatures.put("min_temp_celsius", minTempCelsius);
+    temperatures.put("max_temp_fahrenheit", maxTempF);
+    temperatures.put("min_temp_fahrenheit", minTempF);
 
-//    ObjectMapper mapper = new ObjectMapper();
-//    CityNameResponse obj = mapper.readValue(new URL("https://www.metaweather.com/api/location/"), CityNameResponse.class);
-//    List<CityNameResponse> cityWoeid = metaWeatherAPI.citywoeid(cityWoed);
 
-    return cityNames;
+
+
+    return temperatures;
 }
     }
